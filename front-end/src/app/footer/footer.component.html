@@ -1,0 +1,51 @@
+<div class="container" style="height: 400 px; width: 700px;">
+    <span mat-dialog-close mat-dialog-close="true" class="material-icons" style="margin-left:98%;">highlight_off</span>
+    <div class="row">
+        <div class="col-8" style="text-align: center" style="border: 5px solid orange;">
+            <img [src]="image" alt="" style="width: 190; height: 200;">
+
+
+            <div>
+                <div class="form-check" class="form-group" style="margin-top: 15px; margin-left: 33%;margin-right: 33%;">
+                    <label class="radio-inline"><input type="radio" name="optradio" (click)="car()"><span class="material-icons">  directions_car </span></label>
+                    <label class="radio-inline"><input type="radio" name="optradio"(click)="cam()"><span class="material-icons">local_shipping</span></label>
+                </div>
+            </div>
+
+            <button mat-dialog-close mat-dialog-close="true" [disabled]="thi " style="border-radius: 12px;background-color: #E3DEDF; margin-left: 30%; margin-top: 20px; color: black; font-size: medium; border: 2px solid orange; padding: 14px 40px; " (click)="fd() ">Choose</button>
+        </div>
+        <div class="col-4">
+            <div class="d-flex justify-content-center">
+                <div class="searchbar">
+                    <input class="search_input" style="height: 40px;" type="text" [(ngModel)]="matricule" name="search" placeholder="Search...">
+                    <a class="search_icon"><span class="material-icons">search</span></a>
+                </div>
+            </div>
+            <div style=" height: 60vh; overflow: scroll;">
+                <div *ngFor="let i = index  ;let m of listH | filter:matricule" style="width: 100%; height: 80px;">
+                    <div class="form-group">
+                        <div class="form-check" style="border: 5px solid orange;">
+                            <div *ngIf="m.disable == false" style="width: 20px; height: 20px; margin-left: 92%; "><img src="https://pngimage.net/wp-content/uploads/2018/05/active-icon-png-4.png" alt="sunil"> </div>
+                            <div *ngIf="m.disable == true" style="width:  20px; height: 20px; margin-left: 92%; "><img src="https://i.ya-webdesign.com/images/red-cross-png.png" alt="sunil"> </div>
+
+                            <input class="form-check-input" (click)="radio()" type="radio" [(ngModel)]="plac " [disabled]="m.disable " name="{{m.label}} " value="{{m.label}} " id="{{m.label}} " style="font-size: large; " ngDefaultControl>
+
+                            <label class="form-check-label " for="gridCheck " style="margin-left: 20px; font-size: large; ">
+              {{m.label}}
+            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <button style="border-radius: 12px;background-color: #E3DEDF; color: black; font-size: medium; border: 2px solid orange; padding: 14px 40px; " (click)="ff() ">click to choose place</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- <div>
+    <p>
+        please select your parking
+    </p>
+</div> -->

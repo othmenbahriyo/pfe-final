@@ -1,0 +1,46 @@
+h2 {
+    text-align: center;
+}
+
+p {
+    font-size: 0.93em;
+    text-align: justify;
+    line-height: 160%;
+}
+
+h4 {
+    font-size: 1.43em;
+}
+
+.form-control {
+    height: 40px !important;
+}
+
+body {
+    background: #353A40 !important;
+    background-color: #353A40 !important;
+}
+
+.igx-typography {
+    background: #353A40 !important;
+    background-color: #353A40 !important;
+}
+
+::ng-deep .carousel-control-next-icon {
+    background-image: url('https://cdn3.iconfinder.com/data/icons/pixel-perfect-at-16px-volume-3-1/16/5109-512.png');
+    margin-left: 140px;
+    margin-bottom: 160px;
+}
+
+
+/* ::ng-deep .carousel-control-prev-icon{
+    background-image: url('https://png.pngtree.com/png-clipart/20190619/original/pngtree-previous-vector-icon-png-image_4015266.jpg');
+    margin-right: 140px;
+    margin-bottom: 130px;
+    width: 90px;
+    height: 30px;
+  } */
+
+.material-icons {
+    font-size: 50px;
+}

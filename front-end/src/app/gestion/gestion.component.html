@@ -1,0 +1,25 @@
+<body>
+
+    <span mat-dialog-close mat-dialog-close="true" class="material-icons" style="margin-left:98%;">highlight_off</span>
+    <div id="print-section">
+        <h3 class="h3" class="form-group text-center">{{'navbar.RESERVATION' | translate }}</h3>
+        <div class="m" mat-dialog-content> <span class="material-icons"> local_taxi </span> {{data.matricule}} </div>
+        <div class="m" mat-dialog-content> <span class="material-icons"> local_taxi </span>{{data.place}} </div>
+        <div class="m" mat-dialog-content> <span class="material-icons"> room </span> {{data.name}} </div>
+        <div class="m" mat-dialog-content> <span class="material-icons"> directions_car </span> {{data.typeCar}} </div>
+        <div class="m" mat-dialog-content> <span class="material-icons">local_parking</span>{{data.Tpark}} </div>
+        <div class="m" mat-dialog-content> <span class="material-icons"> date_range </span> {{data.dateE | date:'short'}} ~ {{data.timeE | date:'shortTime'}} </div>
+        <div class="m" mat-dialog-content> <span class="material-icons">date_range</span> {{data.dateS | date:'short'}} ~ {{data.timeS | date:'shortTime'}}
+        </div>
+    </div>
+    <div class="m" class="form-group text-center">
+        <button class="mr-2" mat-dialog-close mat-dialog-close="true" (click)="AnnulerReservation()">{{'CHAT.delete' | translate }}</button>
+
+        <button class="mr-2" mat-dialog-close mat-dialog-close="true" routerLink="/reserve">{{'CHAT.update' | translate }}</button>
+
+
+        <button class="btn btn-success" type="button" (click)="saveReservation()">Réservez à distance</button>
+        <div id="paypal"></div>
+    </div>
+
+</body>

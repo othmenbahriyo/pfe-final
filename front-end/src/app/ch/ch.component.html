@@ -1,0 +1,77 @@
+<body  >
+    <div class="container">
+    <h3 class=" text-center"></h3>
+    <div class="messaging">
+          <div class="inbox_msg">
+            <div class="inbox_people">
+              <div class="headind_srch">
+                <div class="recent_heading">
+                  <h4> {{'CHAT.chat' | translate }}</h4>
+                </div>
+              
+              </div>
+              <div class="inbox_chat">
+                <div class="chat_list active_chat">
+                  <div class="chat_people">
+                    <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                    <div class="chat_ib">
+                      <h5>{{user}}</h5>
+                      <p> {{t}} </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div style="align-items: center;" >
+                    <label for="roomInput">{{'CHAT.room' | translate }}</label>
+                    <select name="roomInput" id="roomInput" class="form-control" [(ngModel)]="room">
+                      <option></option>
+                      <option class="form-control form-control-lg" *ngFor="let m of marker"  [ngValue]="m.name">{{m.name}}</option>
+                    </select>
+                </div>
+                <div style="margin-top:19px;" class="pull-right" style="align-items: center; justify-content: center;"> 
+                    <button type="button" class="btn btn-primary" (click)="join()" style="margin-left: 150px; margin-top: 20px; margin-right: 20px;">{{'CHAT.Join' | translate }}</button>
+                    <button type="button" class="btn btn-default" (click)="leave()" style="margin-left: 30 px;  margin-top: 20px; margin-right: 20px;">{{'CHAT.Leave' | translate }}</button>
+                </div>
+                
+              </div>
+            </div>
+            <div class="mesgs" style="background-color: #D8D8D8;" >
+              <div class="msg_history">
+               
+                
+                    <div *ngIf=" user !== 'admin'" >
+                      <div class="chat_people"  *ngFor="let item of messageArray" style="background-color:  darkgrey; margin-right: 200px;  margin-bottom: 10px; ">
+                        <div class="chat_img"  > 
+                            <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                        <div class="chat_ib">
+                          <p style="color: black; font-size: 1.7 em;" >{{item.user}}</p>    
+                          <p style="color: #fff; font-size: 1.3 em;">{{item.message}} </p>
+                        </div>
+                      </div>
+                    </div>
+                      <div *ngIf=" user === 'admin'">
+                      <div class="chat_people"  *ngFor="let item of messageArray"  style="background-color: darkgrey;  margin-bottom: 10px; margin-left: 200px; ">
+                        <div class="chat_img"> 
+                            <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                        <div class="chat_ib">
+                          <p style="color: black; font-size: 1.7 em;" >{{item.user}}</p>
+                          <p style="color: #fff; font-size: 1.3 em;">{{item.message}} </p>
+                        </div>
+                      </div>
+                    </div>
+                
+              </div>
+              <div class="type_msg"  >
+                <div class="input_msg_write">
+                  <input type="text" class="write_msg" style="color:black; height: 50px; " placeholder="Type a message" [(ngModel)]="messageText" />
+                  <button class="msg_send_btn" type="button" (click)="sendMessage()" ><span class="material-icons">
+                    {{'CONTACT.Send' | translate }}
+                    </span></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          
+        </div></div>
+        </body>

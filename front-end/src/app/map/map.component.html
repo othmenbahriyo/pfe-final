@@ -1,0 +1,357 @@
+<body class="" data-action="pjActionIndex" data-page="home" data-editor="http://trials.vevs.website/web-demo/car-parking-website/index.php?controller=pjCmsEditor&amp;action=pjActionLoadScript&amp;web_page_id=1&amp;locale_id=4&amp;fields=front_fields&amp;template=template_1">
+    <ngb-carousel style="margin-bottom: 0;">
+        <ng-template ngbSlide>
+            <div class="carousel-caption" style="margin-bottom: 180px;  background-color: transparent ;">
+                <h3 style="color: rgb(26, 24, 24); font-family: 'Jazz LET', Courier, monospace; font-size: 4em;text-align: center; "> {{'HOME.TREETRONIX' | translate }}</h3>
+                <h5 style="color: rgb(26, 24, 24);text-align: center; margin-top: 40px; font-family: 'Courier New', Courier, monospace; font-size: 2.5em; ">{{'HOME.Together' | translate }}</h5>
+                <p style=" color: rgb(12, 11, 11); margin-top: 40px;text-align: center; font-family: 'New Century ', Courier, monospace; font-size: 0.99em; ">
+
+                </p>
+                <p style=" color: rgb(12, 11, 11); margin-top: 40px; margin-left: 300px; font-family: 'Courier New', Courier, monospace; font-size: 2em; ">{{'HOME.Books' | translate }}</p>
+                <span class="material-icons" style="background-color: #d6ab91; font-size: 5em; margin-top: 50px; ">arrow_downward</span>
+                <span class="material-icons" style="background-color: #d5ae90; font-size: 5em;margin-top: 50px; ">arrow_downward</span>
+                <span class="material-icons" style="background-color: #d6ab91; font-size: 5em;margin-top: 50px; ">arrow_downward</span>
+            </div>
+
+            <div class="picsum-img-wrapper">
+                <img src="assets/img/cars.jpg" style="opacity:0.8; width: 100%; height: 70%; " alt="Random first slide">
+
+            </div>
+        </ng-template>
+        <ng-template ngbSlide>
+            <div class="picsum-img-wrapper">
+                <img src="assets/img/car2.jpeg" alt="Random second slide">
+            </div>
+            <div class="carousel-caption" style="margin-bottom: 230px; background-color: transparent ;">
+                <h3 style="color: #464444; text-align: center; font-family: 'Courier New', Courier, monospace; font-size: 3em; ">{{'HOME.Real' | translate }}</h3>
+                <p style="color: #464444; text-align: center; font-family: 'Courier New', Courier, monospace; font-size: 0.99em; margin-top: 50px; ">{{'HOME.vehicule' | translate }}</p>
+            </div>
+        </ng-template>
+        <ng-template ngbSlide>
+            <div class="carousel-caption" style="margin-bottom: 300px; background-color: transparent ;">
+                <h3 style="color: white; text-align: center; font-family: 'Courier New', Courier, monospace; font-size: 3em; ">{{'HOME.steady' | translate }}</h3>
+                <p style=" color: white;text-align: center; font-family: 'Courier New', Courier, monospace; font-size: 0.99em; margin-top: 180pw; ">{{'HOME.cities' | translate }}</p>
+            </div>
+            <div class="picsum-img-wrapper">
+                <img src="https://orbitgt.com/wp-content/uploads/2019/02/orbit-gt-smart-cities-background.jpg" style="opacity:1;" alt="Random third slide">
+            </div>
+
+        </ng-template>
+    </ngb-carousel>
+    <div class="wrapper">
+        <div class="hero-section cms-e-section" style="background-image: url(&quot;http://trials.vevs.website/web-demo/car-parking-website/app/web/upload/medium/3-430-1587640207.jpg&quot;);">
+
+
+            <div class="container">
+                <h3 style="text-transform: uppercase;"><span data-type="text"> {{'HOME.welcome' | translate }} {{user}}   </span></h3>
+
+                <h1 class="h1"><span class="wc-editable" data-pk="ws_home_slide_title_1" data-type="text">{{'HOME.Book' | translate }}</span></h1>
+
+                <div class="hero-text-desc"><span class="wc-editable" data-pk="ws_home_slide_desc_1" data-type="plaintext">{{'HOME.location' | translate }}</span></div>
+
+                <div id="pjCpContainer">
+                    <div class="row">
+                        <div class="col-lg-10 col-lg-offset-1 col-xs-12">
+                            <div class="form cms-e-section">
+                                <form [formGroup]="form" id="pjCpSearchForm" action="#" method="post" class="pjCpSearchForm" novalidate="novalidate">
+                                    <div id="pjCpCalendarLocale" style="display: none;" data-months="January_February_March_April_May_June_July_August_September_October_November_December" data-days="Su_Mo_Tu_We_Th_Fr_Sa"></div>
+
+                                    <div class="form-group">
+                                        <label for="location_id" class="formLabel"><span class="wc-editable" data-pk="ws_location" data-type="text">{{'HOME.Location' | translate }}</span></label>
+
+                                        <!-- <select name="location_id" style="height:40px;" id="location_id" class="form-control" (change)="filterChanged($event.target.value)" [(ngModel)]="reserv.name" name="name" formControlName="name" >
+								<option value=""> </option>
+								<option *ngFor="let m of listParking"  [ngValue]="m.name">{{m.name}}</option>
+							</select> -->
+                                        <div class="ng-autocomplete" style="width: 100%;">
+                                            <ng-autocomplete [(ngModel)]="reserv.name" [data]="data" [searchKeyword]="keyword" (selected)='selectEvent($event)' (inputChanged)='onChangeSearch($event)' (inputFocused)='onFocused($event)' [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate">
+
+                                            </ng-autocomplete>
+
+                                            <ng-template #itemTemplate let-item>
+                                                <a [innerHTML]="item.name"></a>
+                                            </ng-template>
+
+                                            <ng-template #notFoundTemplate let-notFound>
+                                                <div [innerHTML]="notFound"></div>
+                                            </ng-template>
+                                        </div>
+
+                                        <p>
+                                            <i class="glyphicon glyphicon-map-marker"></i>
+
+                                            <span class="wc-editable" data-pk="ws_cannot_find_location" data-type="text">{{'HOME.find' | translate }}</span> <a routerLink="/pres"><span class="wc-editable" data-pk="ws_view_map" data-type="text">{{'HOME.view' | translate }}</span></a>
+                                        </p>
+                                        <div>
+                                            <label for="location_id" class="formLabel"><span class="wc-editable" data-pk="ws_location" data-type="text">{{'HOME.Matricule' | translate }}</span></label>
+                                            <input class="form-control " style="height:40px;" [(ngModel)]="reserv.matricule" formControlName="matricule" placeholder="198 TUN 1254" name="matricule">
+                                        </div>
+                                    </div>
+                                    <label for="location_id" class="formLabel"><span class="wc-editable" data-pk="ws_location" data-type="text">{{'HOME.type' | translate }}</span></label>
+
+                                    <input class="form-control " disabled style="height:40px;" [(ngModel)]="reserv.Tpark" name="Tpark" formControlName="Tpark">
+
+                                    <div class="row">
+                                        <div class="col-lg-6 col-xs-12">
+                                            <div>
+                                                <label style="margin-top: 25px;"><span class="wc-editable" data-pk="ws_entry_date_time" data-type="text">{{'HOME.entre' | translate }}</span></label>
+
+                                                <div class="row">
+                                                    <div class="col-sm-6 col-xs-12" style="margin-top: 25px;">
+                                                        <div class="form-group">
+                                                            <div class="input-group datePick datePickFrom">
+                                                                <span class="input-group-addon">
+														<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                                                                </span>
+
+                                                                <input type="text" id="dateOfBirth" name="dateOfBirth" class="form-control" type="date" [(ngModel)]="reserv.dateE" name="dateE" formControlName="dateE">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-6 col-xs-12">
+                                                        <div class="form-group">
+                                                            <div class="input-group timePick timePickFrom" data-rel="from">
+                                                                <timepicker [(ngModel)]="reserv.timeE" name="timeE" formControlName="timeE" style="height: 40px !important;"></timepicker>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6 col-xs-12">
+                                            <div class="dateTimePick">
+                                                <label style="margin-top: 25px;"><span class="wc-editable" data-pk="ws_exit_date_time" data-type="text">{{'HOME.exit' | translate }}</span></label>
+
+                                                <div class="row">
+                                                    <div class="col-sm-6 col-xs-12" style="margin-top: 25px;">
+                                                        <div class="form-group">
+                                                            <div class="input-group datePick datePickTo">
+                                                                <span class="input-group-addon">
+														<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                                                                </span>
+
+                                                                <input type="text" id="dateOfBirth" [(ngModel)]="reserv.dateS" name="dateS" class="form-control" formControlName="dateS" type="date">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-6 col-xs-12">
+                                                        <div class="form-group">
+                                                            <div class="input-group timePick timePickTo" data-rel="to">
+
+                                                                <timepicker [(ngModel)]="reserv.timeS" name="timeS" formControlName="timeS"></timepicker>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label for="location_id" class="formLabel"><span class="wc-editable" data-pk="ws_location" data-type="text">{{'HOME.place' | translate }}</span></label>
+                                    </div>
+                                    <span class="material-icons" (click)="choosePlace()">mediation</span>
+
+
+
+                                    <div class="form-group text-center">
+                                        <button type="submit" (click)="saveCall()" class="btn btn-primary"><span class="wc-editable" data-pk="ws_btn_choose_your_space" data-type="action"  >{{'HOME.choose' | translate }}</span></button>
+                                        <a name="book"></a>
+                                        <p style="text-align: center;" *ngIf="timeRespect()">{{'HOME.condition' | translate }}</p>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <h3 style="text-align: center;margin-top: 40px;">{{'HOME.smart' | translate }}</h3>
+        <h4 style="text-align: center; margin-bottom: 20px;">{{'HOME.SOLUTIONS' | translate }} </h4>
+        <div class="container">
+            <div style="width: 100%;">
+                <div>
+                </div>
+                <div>
+                    <ngb-carousel>
+                        <ng-template ngbSlide>
+                            <div class="item" alt="Random first slide">
+                                <div class="row-fluid">
+                                    <div class="span4">
+                                        <span class="material-icons" style="font-size: 3.73em;">school</span>
+                                        <h4>{{'HOME.uni' | translate }}</h4>
+                                        <p> {{'HOME.defuni' | translate }} </p>
+
+                                    </div>
+                                    <div class="span4">
+                                        <span class="material-icons" style="font-size: 3.73em;">local_hospital</span>
+                                        <h4>{{'HOME.hos' | translate }}</h4>
+                                        <p>{{'HOME.defhos' | translate }}</p>
+
+                                    </div>
+                                    <div class="span4">
+                                        <span class="material-icons" style="font-size: 3.73em;">local_convenience_store</span>
+                                        <h4>{{'HOME.Supermarkets' | translate }}</h4>
+                                        <p>{{'HOME.defSupermarkets' | translate }}</p>
+
+                                    </div>
+
+                                </div>
+                                <!--/row-fluid-->
+                            </div>
+                        </ng-template>
+                        <ng-template ngbSlide>
+                            <div class="item" alt="Random second slide">
+                                <div class="row-fluid">
+                                    <div class="span3">
+                                        <span class="material-icons" style="font-size: 3.73em;">local_airport</span>
+                                        <h4>{{'HOME.Airports' | translate }}</h4>
+                                        <p>{{'HOME.defAirports' | translate }}</p>
+
+                                    </div>
+                                    <div class="span3">
+                                        <span class="material-icons" style="font-size: 3.73em;">account_balance</span>
+                                        <h4>{{'HOME.Councils' | translate }}</h4>
+                                        <p>{{'HOME.defCouncils' | translate }}</p>
+
+                                    </div>
+                                    <div class="span3">
+                                        <span class="material-icons" style="font-size: 3.73em;">store</span>
+                                        <h4>{{'HOME.operators' | translate }}</h4>
+                                        <p style=" size: 92px;">{{'HOME.defoperators' | translate }}</p>
+
+                                    </div>
+                                    <div class="span3">
+                                        <span class="material-icons" style="font-size: 3.73em;">shopping_cart</span>
+                                        <h4>{{'HOME.Shopping' | translate }}</h4>
+                                        <p>{{'HOME.defShopping' | translate }}</p>
+
+                                    </div>
+                                </div>
+                                <!--/row-fluid-->
+                            </div>
+                        </ng-template>
+                    </ngb-carousel>
+                    <div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main">
+            <div class="section section-about" id="section-about">
+                <div class="section-head">
+                    <div class="container cms-e-section">
+                        <h2 class="h2"><span class="wc-editable" data-pk="ws_about_me_title" data-type="text">{{'HOME.about' | translate }}</span></h2>
+
+
+                        <div class="row">
+                            <div class="col-lg-10 col-lg-offset-1">
+                                <div class="paragragh"><span class="wc-editable" data-pk="ws_about_me_desc" data-type="plaintext"> <p style="text-align: center;"> {{'HOME.def' | translate }} </p></span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="card-deck">
+                    <div class="card">
+                        <img class="card-img-top" src="http://treetronix.com/wp-content/uploads/2020/05/about-mission.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h1 style="text-align: center;">{{'HOME.Mission' | translate }}</h1>
+                            <p class="card-text" style="text-align: center;">{{'HOME.Offrez' | translate }}</p>
+
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img-top" src="http://treetronix.com/wp-content/uploads/2020/05/about-plan.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h1 style="text-align: center;">{{'HOME.objectif' | translate }}</h1>
+                            <p class="card-text" style="text-align: center;">{{'HOME.Améliorer' | translate }}</p>
+
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img-top" src="http://treetronix.com/wp-content/uploads/2020/05/about-vision.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h1 style="text-align: center;">{{'HOME.Vision' | translate }}</h1>
+                            <p class="card-text" style="text-align: center;">{{'HOME.développement' | translate }}</p>
+
+                        </div>
+                    </div>
+                </div>-->
+            </div>
+
+
+
+            <div class="section section-services" id="section-services">
+                <div class="container">
+
+
+
+                </div>
+            </div>
+        </div>
+        <footer class="footer" id="section-contact">
+            <div class="footer-nav">
+                <div class="container cms-e-section">
+                    <ul>
+                        <li><a routerLink="/map">{{'HOME.Start' | translate }}</a></li>
+                        <li><a routerLink="/reserve">{{'HOME.Reservations' | translate }}</a></li>
+                        <li><a routerLink="/pres">{{'HOME.Locations' | translate }}</a></li>
+                        <li><a routerLink="/price">{{'HOME.Price' | translate }}</a></li>
+                        <li><a routerLink="/contact"> {{'HOME.Contact' | translate }}</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 col-xs-12">
+                            <p class="copyright cms-e-section" data-quick="" data-quick2="company" data-title-quick2="Company Details">© 2020 <a href="./"><span class="wc-editable" data-pk="ws_car_name" data-type="text">enetcom</span></a> | <span class="wc-editable" data-pk="ws_rights_reserved" data-type="text">All rights reserved</span></p>
+
+                            <p class="credits credits-secondary"><a href="https://www.3s.com.tn/en/" target="_blank" rel="noopener">Treetronix's parking</a> </p>
+                        </div>
+                        <div class="col-sm-6 col-xs-12 text-right">
+                            <ul class="socials socials-secondary cms-e-section" data-quick2="social" data-title-quick2="Social Media Profiles">
+                                <li><a href="https://www.facebook.com/treetronix/?ref=br_rs" target="_blank" class="ico" rel="noopener"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="https://twitter.com" target="_blank" class="ico" rel="noopener"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="https://www.linkedin.com/company/treetronix/" target="_blank" class="ico" rel="noopener"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="https://www.instagram.com" target="_blank" class="ico" rel="noopener"><i class="fa fa-instagram"></i></a></li>
+                                <li><a href="https://www.pinterest.com" target="_blank" class="ico" rel="noopener"><i class="fa fa-pinterest"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+    <div>
+
+    </div>
+    <div class="pj-signup-overlay"></div>
+    <div class="pj-signup-dialog"></div>
+    <div class="pj-signup-trigger"></div>
+    <div role="button" tabindex="-1" id="scroll-top" class="topbutton btn-hide" aria-label="Top"><span class="fa fa-angle-double-up"></span></div>
+</body>
+
+
+
+
+
+
+
+<simple-notifications></simple-notifications>

@@ -1,0 +1,45 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav" >
+      <mat-toolbar>Menu</mat-toolbar>
+      <mat-nav-list>
+        <a mat-list-item routerLink="/dash">Dashboard</a>
+        <a mat-list-item routerLink="/table">tableau</a>
+        <a mat-list-item routerLink="/gpark">parking</a>
+        <a mat-list-item routerLink="/ad">add admin</a>
+        <a mat-list-item routerLink="/mp">add place</a>
+        
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-toolbar >
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+        >
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+        
+      </mat-toolbar>
+
+  
+    
+      
+    
+    <router-outlet></router-outlet>
+
+    <!------ Include the above in your HEAD tag ---------->
+    
+    
+ 
+  
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  
+  
+
+

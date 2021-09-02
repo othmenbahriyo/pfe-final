@@ -1,0 +1,88 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav">
+        <mat-toolbar>Menu</mat-toolbar>
+        <mat-nav-list>
+            <a mat-list-item routerLink="/gpark">Dashboard</a>
+            <a mat-list-item routerLink="/table">tableau</a>
+            <a mat-list-item routerLink="/ap">my parks</a>
+            <a mat-list-item routerLink="/mp">my places</a>
+            <a mat-list-item routerLink="/ad">add admin</a>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar>
+            <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+
+        </mat-toolbar>
+
+
+
+
+
+
+
+        <!------ Include the above in your HEAD tag ---------->
+        <div class="container h-100">
+            <div class="d-flex justify-content-center h-100">
+                <div class="searchbar">
+                    <input class="search_input" style="height: 40px;" type="text" [(ngModel)]="matricule" name="search" placeholder="Search...">
+                    <a class="search_icon"><span class="material-icons">search</span></a>
+                </div>
+            </div>
+        </div>
+        <label *ngIf="selecteds != 'sup'">Choose parking</label>
+        <select *ngIf="selecteds != 'sup'" (change)="filterChanged($event.target.value)" class="form-control form-control-lg" ([ngModel])="selected">
+      <option></option>
+      <option class="form-control form-control-lg" *ngFor="let m of marker"  [ngValue]="m.name">{{m.name}}</option>
+    </select>
+
+        <table class="table" id="mytable">
+            <thead>
+                <tr>
+                    <th scope="col">name</th>
+                    <th scope="col">matricule</th>
+                    <th scope="col">Type parking</th>
+                    <th scope="col">Date entrée</th>
+                    <th scope="col">Date sortie</th>
+                    <th scope="col">time entrée</th>
+                    <th scope="col">time sortie</th>
+                    <th scope="col">place</th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr *ngFor="let i = index;let m of list | filter:matricule">
+
+
+                    <th scope="col">{{m.name}}</th>
+                    <th scope="col">{{m.matricule}}</th>
+                    <th scope="col" name="valeur">{{m.Tpark}}</th>
+                    <th scope="col" name="date">{{m.dateE}}</th>
+                    <th scope="col">{{m.dateS}}</th>
+                    <th scope="col">{{m.timeE}}</th>
+                    <th scope="col">{{m.timeS}}</th>
+                    <th scope="col">{{m.place}}</th>
+                    <th scope="col"><span class="material-icons" *ngIf="!valid[i+1]" (click)="onValidReservation(i)">done_outline</span></th>
+                    <th scope="col"><span class="material-icons" *ngIf="valid[i+1]" (click)="somefunction(i , m._id)">cancel</span> </th>
+                    <th scope="col"><span class="material-icons" (click)="onDelete(m._id)">delete</span></th>
+
+
+
+
+
+
+                </tr>
+
+            </tbody>
+        </table>
+
+
+
+    </mat-sidenav-content>
+</mat-sidenav-container>

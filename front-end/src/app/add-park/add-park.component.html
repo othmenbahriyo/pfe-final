@@ -1,0 +1,152 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+
+
+
+
+
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav">
+        <mat-toolbar>Menu</mat-toolbar>
+        <mat-nav-list>
+            <a mat-list-item routerLink="/gpark">Dashboard</a>
+            <a mat-list-item routerLink="/table">tableau</a>
+            <a mat-list-item routerLink="/ap">my parks</a>
+            <a mat-list-item routerLink="/mp">my places</a>
+            <a mat-list-item routerLink="/ad">add admin</a>
+
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar>
+            <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+                <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+              </button>
+
+        </mat-toolbar>
+
+
+
+
+
+        <div class="container">
+            <h3 class=" text-center"></h3>
+            <div class="messaging">
+                <div class="inbox_msg">
+                    <div class="inbox_people">
+                        <div class="headind_srch">
+                            <div class="recent_heading">
+                                <h4>ADD PARK</h4>
+                            </div>
+
+                        </div>
+                        <div class="inbox_chat">
+                            <div>
+                                <form #parkForm="ngForm" class="form-group text-center">
+
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">name</label>
+                                        <input class="form-control" ngx-google-places-autocomplete [options]='options' [(ngModel)]="markers.name" name="name" #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" />
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">longitude</label>
+                                        <input type="text" class="form-control" [(ngModel)]="markers.longitude" name="longitude">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">latitude</label>
+                                        <input type="text" class="form-control" [(ngModel)]="markers.latitude" name="latitude">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">price</label>
+                                        <input type="text" class="form-control" [(ngModel)]="markers.price" name="price">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">NB place</label>
+                                        <input type="text" class="form-control" [(ngModel)]="markers.nbplace" name="nbplace">
+                                    </div>
+                                    <!-- <input type="file" formenctype="multipart/form-data" name="image" id="image" (change)="selectImage($event.target.files)"> -->
+                                    <form action="/addParking" method="post" enctype="multipart/form-data">
+                                        <input type="file" name="image" (change)="selectImage($event)" />
+                                    </form>
+                                    <div class="image-preview">
+                                        <img [src]="imagePreview" alt="">
+                                    </div>
+
+                                    <p style="font-size: x-large;" *ngIf="edits == true">parking edit... </p>
+
+                                    <div>
+                                        <button class="btn btn-custom right" type="button" (click)="resetForm()">Reset</button>
+
+                                        <button class="btn btn-custom right" type="button" *ngIf="role == 'supA'" (click)="saveParking()">add</button>
+
+                                        <button class="btn btn-custom right" type="submit" (click)="onSubmit()">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                    <div class="mesgs" style="background-color: #D8D8D8;">
+                        <div class="msg_history">
+
+
+                            <div>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+
+                                            <th scope="col">name</th>
+                                            <th scope="col">longitude</th>
+                                            <th scope="col">latitude</th>
+                                            <th scope="col">price</th>
+                                            <th scope="col">place max</th>
+
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let m of marker ">
+                                            <td>{{m.name}}</td>
+                                            <td>{{m.longitude}}</td>
+                                            <td>{{m.latitude}}</td>
+                                            <td>{{m.price}}</td>
+                                            <td>{{m.nbplace}}</td>
+                                            <td>
+                                                <a class="action-btn" (click)="onEdit(m)">
+                                                    <i class="material-icons">edit</i>
+                                                </a>
+                                                <a *ngIf="role == 'supA'" class="action-btn" (click)="onDeletee(m._id)">
+                                                    <i class="material-icons">delete</i>
+                                                </a>
+                                            </td>
+
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <!------ Include the above in your HEAD tag ---------->
+
+
+
+
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
+<simple-notifications></simple-notifications>

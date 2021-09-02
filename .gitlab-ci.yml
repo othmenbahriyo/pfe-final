@@ -1,0 +1,16 @@
+image: trion/ng-cli-karma
+
+cache:
+  paths:
+    - /front-end/node_modules/
+
+deploy_stage:
+  stage: deploy
+  environment: Stage
+  only:
+    - master
+  script:
+    - cd front-end
+    - npm install
+    - ./node_modules/@angular/cli/bin/ng build --progress false --prod --base-href http://pfe-stage.surge.sh
+    - ./node_modules/.bin/surge -p dist/pfe --domain pfe-stage.surge.sh

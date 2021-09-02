@@ -1,0 +1,171 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav">
+        <mat-toolbar>Menu</mat-toolbar>
+        <mat-nav-list>
+            <a mat-list-item routerLink="/gpark">Dashboard</a>
+            <a mat-list-item routerLink="/table">tableau</a>
+            <a mat-list-item routerLink="/ap">my parks</a>
+            <a mat-list-item routerLink="/mp">my places</a>
+            <a mat-list-item routerLink="/ad">add admin</a>
+
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar>
+            <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+
+        </mat-toolbar>
+
+
+
+
+
+        <div class="container">
+            <div class="container h-100">
+                <div class="d-flex justify-content-center h-100">
+                    <div class="searchbar">
+                        <input class="search_input" type="text" [(ngModel)]="matricule" name="search" placeholder="Search...">
+                        <a class="search_icon"><span class="material-icons">search</span></a>
+                    </div>
+                </div>
+            </div>
+            <!-- <button (click)="kafka()">refresh</button> -->
+
+            <h3 class=" text-center"></h3>
+            <div class="messaging">
+                <div class="inbox_msg">
+                    <div class="inbox_people">
+                        <div class="headind_srch">
+
+
+                        </div>
+                        <div class="inbox_chat">
+                            <div class="chat_list active_chat">
+                                <div class="chat_people" style="height: 100px;">
+                                    <h4 style="text-align: center;"> {{selected}} </h4>
+                                    <div class="chat_ib">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-center" style="align-items: center;">
+                                <label>Choose parking</label>
+                                <select (change)="filterChanged($event.target.value)" class="form-control form-control-lg" ([ngModel])="selected">
+                          <option></option>
+                          <option class="form-control form-control-lg" *ngFor="let m of marker"  [ngValue]="m.name">{{m.name}}</option>
+                        </select>
+                            </div>
+
+                            <div class="text-center" style="align-items: center;">
+                                <div style="margin-top: 20px;">
+                                    <h4>ADD PLACES</h4>
+                                </div>
+                                <div class="">
+                                    <label style=" text-align: center; margin-top: 25px;">add devices's ID</label>
+                                    <div>
+                                        <input class="text-center" type="text" name="capteur" style="height: 40px; width: 100%;" [(ngModel)]="capteur" id="capteur">
+                                        <div>
+                                            <label style="text-align: center; margin-top: 25px;">add devices's Name</label>
+                                        </div>
+                                        <input class="text-center" type="text" name="k" style="height: 40px; width: 100%;" [(ngModel)]="k" id="k">
+                                        <!-- <div class="alert alert-danger" style="width: 200px;" role="alert" *ngIf="valid == true" >
+                        An existing ID
+                     </div> -->
+                                        <div style="margin-left: 10%;">
+                                            <button type="button" class="btn btn-default" (click)="addCapteur()" style="margin-left: 30 px;  margin-top: 20px; margin-right: 20px;">add elmt</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div style="margin-top: 20px;">
+                        <h4 style="text-align: centre; margin-left: 60%; font-size: large;">MY DEVICES</h4>
+                    </div>
+                    <div class="mesgs" style="background-color: #D8D8D8;">
+
+                        <div class="msg_history">
+
+
+                            <div *ngIf="Property == 'etat'">
+                                <div class="chat_people" *ngFor="let j = index;let p of t | filter:matricule" style="background-color:  darkgrey; margin-bottom: 10px; ">
+
+                                    <!-- <div *ngIf=" p.last == true " style="width: 20px; height: 20px; margin-left: 96%; "><img src="https://pngimage.net/wp-content/uploads/2018/05/active-icon-png-4.png" alt="sunil"> </div>
+                                    <div *ngIf="p.last == false " style="width: 20px; height: 20px; margin-left: 96%; "><img src="https://i.ya-webdesign.com/images/red-cross-png.png" alt="sunil"> </div> -->
+
+                                    <div class="chat_img">
+                                        <img style="height: 40px; width: 40px;" src="https://img2.freepng.fr/20180721/czw/kisspng-passive-infrared-sensor-computer-icons-acceleromet-sensing-5b531a42d71201.0681789015321728668809.jpg" alt="sunil"> </div>
+                                    <div class="chat_ib">
+                                        <span>  {{j}} </span>
+                                        <h4>
+                                            <p style="color: #fff; font-size: x-large; text-align: center; "> {{p.firstName}} ~~ {{p.lastName}} </p>
+                                        </h4>
+                                    </div>
+                                    <div>
+                                        <span class="material-icons " style="margin-left: 96%; pointer-events: auto; " (click)="deleteCapteur(j) ">delete </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="Property == 'etat'">
+                                <div class="row" *ngFor="let j = index;let p of tt | filter:matricule" [style.backgroundColor]="'#838182'" style=" margin-bottom: 10px; ">
+                                    <div class="col-11 ">
+                                        <div class="chat_people ">
+
+                                            <!-- <div *ngIf=" p.last==true " style="width: 20px; height: 20px; margin-left: 96%; "><img src="https://pngimage.net/wp-content/uploads/2018/05/active-icon-png-4.png " alt="sunil "> </div>
+                                            <div *ngIf="p.last==false " style="width: 20px; height: 20px; margin-left: 96%; "><img src="https://i.ya-webdesign.com/images/red-cross-png.png " alt="sunil "> </div> -->
+
+                                            <div class="chat_img ">
+                                                <img style="height: 40px; width: 40px; " src="https://img2.freepng.fr/20180721/czw/kisspng-passive-infrared-sensor-computer-icons-acceleromet-sensing-5b531a42d71201.0681789015321728668809.jpg " alt="sunil ">                                                </div>
+                                            <div class="chat_ib ">
+                                                <span>  {{j}} </span>
+                                                <h4>
+                                                    <p style="color: #fff; font-size: x-large; text-align: center; "> {{p.first}} {{p.first.lastName}} </p>
+                                                </h4>
+                                            </div>
+                                            <div>
+                                                <span class="material-icons " style="margin-left: 96%; pointer-events: auto; " (click)="deleteCapteur(j) ">delete </span>
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+                                    <div class="col-1 " [style.backgroundColor]="this.ts[(this.ts.length - 1)][0][4]">
+
+                                        <span class="material-icons" style="margin-top: 10px;">
+                                            battery_charging_full
+                                        </span>
+                                        <p style="margin-top: 10px;">{{this.ts[(this.ts.length - 1)][0][3]}}</p>
+                                    </div>
+                                    <!-- <div>
+                                    <span class="material-icons " style="margin-left: 96%; pointer-events: auto; " (click)="deleteCapteur(j) ">delete </span>
+                                </div> -->
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <!------ Include the above in your HEAD tag ---------->
+
+
+
+
+    </mat-sidenav-content>
+</mat-sidenav-container>

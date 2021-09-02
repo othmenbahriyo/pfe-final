@@ -1,0 +1,214 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav">
+        <mat-toolbar>Menu</mat-toolbar>
+        <mat-nav-list>
+            <a mat-list-item routerLink="/gpark">Dashboard</a>
+            <a mat-list-item routerLink="/table">tableau</a>
+            <a mat-list-item routerLink="/ap">my parks</a>
+            <a mat-list-item routerLink="/mp">my places</a>
+            <a mat-list-item routerLink="/ad">add admin</a>
+
+
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar>
+            <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+
+        </mat-toolbar>
+
+
+        <div class="features-boxed">
+            <div class="container">
+                <div class="intro">
+                    <h2 class="text-center">Gestion de parking</h2>
+                    <p class="text-center"></p>
+                </div>
+
+                <div class="features-boxed">
+                    <div class="container">
+
+                        <div class="row justify-content-center features">
+                            <div class="col-sm-6 col-md-5 col-lg-4 item" style="font-size: 100px;">
+                                <div class="box" style="height: 280px;"><i class="fa fa-map-marker icon"></i>
+                                    <i class="fa fa-map-marker icon"></i>
+                                    <i class="fa fa-map-marker icon"></i>
+                                    <h3 class="name" style="height: 50PX;">NB PARKING </h3>
+
+                                    <p class="description" style="font-size: 80px;">{{cmp}}</p>
+
+                                    <p class="description"></p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div>
+                    <label for="location_id" class="formLabel"><span class="wc-editable" data-pk="ws_location"
+              data-type="text">Location</span></label>
+
+                    <select name="location_id" id="location_id" class="form-control form-control-lg" (change)="filterChanged($event.target.value)" class="form-control form-control-lg" ([ngModel])="selected">
+            <option></option>
+            <option class="form-control form-control-lg" *ngFor="let m of marker"  [ngValue]="m">{{m.name}}</option>
+
+          </select>
+                </div>
+
+                <div class="row justify-content-center features">
+                    <div class="col-sm-6 col-md-5 col-lg-4 item">
+
+                        <div class="box">
+                            <h3 class="name">NB de voitures dans le parking</h3>
+                            <ng-container>
+
+                                <p class="description" style="font-size: 70px;"><strong> {{m}} </strong>
+                                </p>
+                            </ng-container>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-5 col-lg-4 item">
+                        <div class="box">
+                            <h3 class="name">NB de place vides</h3>
+                            <ng-container>
+
+                                <p class="description" style="font-size: 70px;"><strong> {{nbv}} </strong>
+                                </p>
+                            </ng-container>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-5 col-lg-4 item">
+                        <div class="box">
+                            <h3 class="name">nb de place total</h3>
+                            <ng-container>
+
+                                <p class="description" style="font-size: 70px;"><strong> {{nbt}} </strong>
+                                </p>
+                            </ng-container>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-5 col-lg-4 item">
+                        <div class="box">
+                            <h3 class="name">price Total</h3>
+                            <ng-container>
+
+                                <p class="description" style="font-size: 70px;"><strong> {{priceT}} </strong>
+                                </p>
+                            </ng-container>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-5 col-lg-4 item">
+                        <div class="box">
+                            <h3 class="name">price/week</h3>
+                            <ng-container>
+
+                                <p class="description" style="font-size: 70px;"><strong> {{priceD}} </strong>
+                                </p>
+                            </ng-container>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-5 col-lg-4 item">
+                        <div class="box">
+                            <h3 class="name">price/days</h3>
+                            <ng-container>
+
+                                <p class="description" style="font-size: 70px;"><strong> {{priceD}} </strong>
+                                </p>
+                            </ng-container>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="background-color: #C7E4E7;">
+            <div class="span6">
+                <h3>NB cars / days in week</h3>
+                <table class="table" style="width: 490px; margin-left: 8%; margin-top: 20px; border: black;background-color: darkgrey;">
+                    <thead class="black white-text">
+                        <tr>
+                            <th scope="col">dem</th>
+                            <th scope="col">lun</th>
+                            <th scope="col">mar</th>
+                            <th scope="col">mer</th>
+                            <th scope="col">jeu</th>
+                            <th scope="col">ven</th>
+                            <th scope="col">sam</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+
+                            <td>{{dem}}</td>
+                            <td>{{lun}}</td>
+                            <td>{{mar}}</td>
+                            <td>{{mer}}</td>
+                            <td>{{jeu}}</td>
+                            <td>{{ven}}</td>
+                            <td>{{sam}}</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="span6">
+                <h3>NB cars/ month</h3>
+                <table class="table" style="width: 490px; margin-left: 10%;  margin-top: 20px; border: black;background-color: darkgrey;">
+                    <thead class="black white-text">
+                        <tr>
+                            <th scope="col">jan</th>
+                            <th scope="col">fiv</th>
+                            <th scope="col">mar</th>
+                            <th scope="col">avr</th>
+                            <th scope="col">mai</th>
+                            <th scope="col">jun</th>
+                            <th scope="col">jui</th>
+                            <th scope="col">out</th>
+                            <th scope="col">sep</th>
+                            <th scope="col">oct</th>
+                            <th scope="col">nou</th>
+                            <th scope="col">dec</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+
+                            <td> {{year.jun}}</td>
+                            <td>{{year.fev}}</td>
+                            <td>{{year.mar}}</td>
+                            <td>{{year.avr}}</td>
+                            <td>{{year.mai}}</td>
+                            <td>{{year.jon}}</td>
+                            <td>{{year.jui}}</td>
+                            <td>{{year.out}}</td>
+                            <td>{{year.sep}}</td>
+                            <td>{{year.oct}}</td>
+                            <td>{{year.nouv}}</td>
+                            <td>{{year.dec}}</td>
+
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+        <!------ Include the above in your HEAD tag ---------->
+
+
+
+
+    </mat-sidenav-content>
+</mat-sidenav-container>
